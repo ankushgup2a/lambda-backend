@@ -1,7 +1,7 @@
 const request = require("request");
 
 exports.handler = function(event, context, callback) {
-  const key = "YOUR-KEY-HERE";
+  const key = "10hYYvgVfLorAlOkA6yUIQJf6NKny57Xcm-bpwbp6s28";
   const url = "https://spreadsheets.google.com/feeds/list/"+key+"/od6/public/values?alt=json";
 
   request({
@@ -24,8 +24,14 @@ exports.handler = function(event, context, callback) {
       });
 
       return columns;
-    })
+    });
 
-    callback(null, parsed);
+    let res = {
+      "statusCode": 200,
+      "body": JSON.stringify(parsed),
+      "isBase64Encoded": false
+  };
+
+    callback(null, res);
   });
 };
